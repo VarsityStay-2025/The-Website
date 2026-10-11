@@ -39,7 +39,7 @@ function requireAccount(role,action){
 function openModal(kind,id){
 if(kind==='book'&&!requireAccount('student','request a room or viewing'))return;
 if(kind==='addListing'&&!requireAccount('landlord','list accommodation'))return;
-const el=$('#modal');let html='';if(kind==='auth'||kind==='landlordAuth'){const isLand=kind==='landlordAuth';html=`<div class="micro-label">WELCOME TO VARSITYSTAY</div><h2 id="auth-title">${isLand?'Start listing':'Good to have you here.'}</h2><p>Create an account or sign in to continue.</p><div class="auth-toggle"><button type="button" data-auth-mode="login" class="selected">Log in</button><button type="button" data-auth-mode="signup">Create account</button></div><form id="auth-form" data-mode="login" class="stack-form"><div id="signup-only" hidden><label>Full name<input name="full_name" placeholder="Your name"/></label><label>I'm joining as<select name="role"><option value="student" ${isLand?'':'selected'}>Student</option><option value="landlord" ${isLand?'selected':''}>Landlord / property owner</option></select></label></div><label>Email address<input name="email" type="email" required autocomplete="email"/></label><label>Password<input name="password" type="password" minlength="8" required autocomplete="current-password"/></label><button class="btn primary full">Continue ${icon('arrow-right',16)}</button><small>Email confirmation may be required. Never share your password.</small></form>`}
+const el=$('#modal');let html='';if(kind==='auth'||kind==='landlordAuth'){const isLand=kind==='landlordAuth';html=`<div class="micro-label">WELCOME TO VARSITYSTAY</div><h2 id="auth-title">${isLand?'Start listing':'Good to have you here.'}</h2><p>Create an account or sign in to continue.</p><div class="auth-toggle"><button type="button" data-auth-mode="login" class="selected">Log in</button><button type="button" data-auth-mode="signup">Create account</button></div><form id="auth-form" data-mode="login" class="stack-form"><div id="signup-only" hidden><label>Full name<input name="full_name" placeholder="Your name"/></label><label>I'm joining as<select name="role"><option value="student" ${isLand?'':'selected'}>Student</option><option value="landlord" ${isLand?'selected':''}>Landlord / property owner</option></select></label></div><label>Email address<input name="email" type="email" required autocomplete="email"/></label><label>Password<input name="password" type="password" minlength="8" required autocomplete="current-password"/></label><button class="btn primary full">Continue ${icon('arrow-right',16)}</button><small>New accounts must verify their email before signing in. Never share your password.</small></form>`}
 else if(kind==='addListing'){html=`<div class="micro-label">LANDLORD PORTAL</div><h2>Add an accommodation.</h2><p>Listings are reviewed before they appear publicly.</p><form id="listing-form" class="stack-form"><label>Property name<input name="title" required maxlength="140" placeholder="e.g. Campus View Residence"/></label><label>Property description<textarea name="description" required rows="4" minlength="30"></textarea></label><div class="form-two"><label>City<input name="city" required placeholder="Bloemfontein"/></label><label>Area / suburb<input name="suburb" required placeholder="Westdene"/></label></div><label>University<select name="university_id" required><option value="">Select nearest university</option>${state.universities.map(u=>`<option value="${u.id}">${safe(u.name)}</option>`).join('')}</select></label><div class="form-two"><label>Monthly rent (ZAR)<input name="monthly_rent" type="number" min="100" required/></label><label>Walking time to campus (minutes)<input name="walk_minutes" type="number" min="0" max="240" required/></label></div><label>Room type<select name="room_type">${['Single room','Shared room','Studio','Apartment','Bachelor','Ensuite'].map(r=>`<option>${r}</option>`).join('')}</select></label><div class="form-two"><label>Available rooms<input name="available_rooms" type="number" min="0" required value="1"/></label><label>Property contact phone<input name="contact_phone" type="tel" required/></label></div><label>Street address<input name="address" required/></label><div class="checks"><label><input type="checkbox" name="nsfas_friendly"/> NSFAS-friendly</label><label><input type="checkbox" name="wifi"/> Wi-Fi</label><label><input type="checkbox" name="security"/> 24/7 security</label><label><input type="checkbox" name="parking"/> Parking</label></div><label>Property photos (up to 5 images, max 5 MB each)<input id="listing-images" type="file" accept="image/jpeg,image/png,image/webp" multiple/></label><button class="btn primary full">Submit for approval ${icon('arrow-right',16)}</button></form>`}
 else if(kind==='property'||kind==='book'){const p=state.properties.find(x=>x.id===id);if(!p)return notify('Property not found','err');state.selected=id;html=`<div class="modal-photo">${cover(p)}</div><span class="micro-label">${p.verified?'VERIFIED':'LISTING DETAILS'}</span><h2>${safe(p.title)}</h2><p>${safe(p.city)} · ${p.walk_minutes} minutes to campus · ${money(p.monthly_rent)} / month</p><p>${safe(p.description)}</p><div class="detail-amenities">${[p.nsfas_friendly?'NSFAS-friendly':null,p.wifi?'Wi-Fi':null,p.security?'24/7 security':null,p.parking?'Parking':null].filter(Boolean).map(s=>`<span>${s}</span>`).join('')}</div>${kind==='property'?`<button class="btn primary full" data-book="${p.id}">Request a room or viewing ${icon('arrow-right',16)}</button>`:`<form class="stack-form" id="reservation-form"><label>Request type<select name="request_type"><option value="room">Reserve a room (request)</option><option value="viewing">Request a viewing</option></select></label><label>Message to property owner<textarea name="message" rows="3" placeholder="Introduce yourself and share your preferred move-in date."></textarea></label><button class="btn primary full">Send request ${icon('arrow-right',16)}</button><small>This sends a request only. No payment is collected at this stage.</small></form>`}`}
 $('#modal-content').innerHTML=html;el.classList.add('shown');el.setAttribute('aria-hidden','false');createIcons({icons,attrs:{'stroke-width':1.8}});}
@@ -47,7 +47,68 @@ function closeModal(){const el=$('#modal');el.classList.remove('shown');el.setAt
 function formObject(form){const f=new FormData(form);return Object.fromEntries(f.entries())}
 function attach(){document.querySelectorAll('[data-nav]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();nav(el.dataset.nav)}));document.querySelectorAll('[data-modal]').forEach(el=>el.addEventListener('click',()=>openModal(el.dataset.modal)));document.querySelectorAll('[data-open-property]').forEach(el=>el.addEventListener('click',()=>openModal('property',el.dataset.openProperty)));document.querySelectorAll('[data-book]').forEach(el=>el.addEventListener('click',()=>openModal('book',el.dataset.book)));document.querySelectorAll('[data-uni]').forEach(el=>el.addEventListener('click',()=>{state.search.university=el.dataset.uni;nav('discover')}));$('#mobile-menu')?.addEventListener('click',()=>$('#mobile-nav').classList.toggle('open'));$('#close-modal')?.addEventListener('click',closeModal);$('#modal')?.addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});document.querySelectorAll('#budget').forEach(el=>el.addEventListener('input',()=>{$('#budget-value').textContent=money(el.value);state.search.budget=+el.value}));$('#search-form')?.addEventListener('submit',e=>{e.preventDefault();const f=formObject(e.target);state.search={university:f.university,room:f.room,minutes:f.minutes,budget:+$('#budget').value,nsfas:!!f.nsfas,wifi:!!f.wifi,security:!!f.security,parking:!!f.parking};nav('discover')});$('#review-form')?.addEventListener('submit',reviewSubmit);$('#complaint-form')?.addEventListener('submit',complaintSubmit);$('#logout')?.addEventListener('click',async()=>{await db?.auth.signOut();state.user=null;state.profile=null;nav('home')});document.querySelectorAll('[data-dash-tab]').forEach(b=>b.addEventListener('click',()=>loadDashboardTab(b.dataset.dashTab)));if(state.page==='dashboard'&&state.profile?.role==='landlord')loadDashboardTab('listings')}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-auth-mode]');if(b){const mode=b.dataset.authMode;$('#auth-form').dataset.mode=mode;$('#signup-only').hidden=mode!=='signup';document.querySelectorAll('[data-auth-mode]').forEach(x=>x.classList.toggle('selected',x===b));return}});
-document.addEventListener('submit',async e=>{if(e.target.id==='auth-form'){e.preventDefault();if(!db)return notify('Connect your backend in .env before signing in.','err');const f=formObject(e.target);let result;if(e.target.dataset.mode==='signup'){result=await db.auth.signUp({email:f.email,password:f.password,options:{data:{full_name:f.full_name,role:f.role}}})}else result=await db.auth.signInWithPassword({email:f.email,password:f.password});if(result.error)return notify(result.error.message,'err');notify(e.target.dataset.mode==='signup'?'Account created. Check your email to verify it.':'Signed in successfully.');closeModal();await initSession();nav('dashboard')}
+document.addEventListener('submit', async e => {
+  if (e.target.id === 'auth-form') {
+    e.preventDefault();
+    if (!db) return notify('Add your Supabase credentials to .env.local first.', 'err');
+
+    const form = e.target;
+    const button = form.querySelector('button[type="submit"], button.btn');
+    const mode = form.dataset.mode;
+    const f = formObject(form);
+    const email = String(f.email || '').trim().toLowerCase();
+    if (button) button.disabled = true;
+
+    try {
+      if (mode === 'signup') {
+        const { data, error } = await db.auth.signUp({
+          email,
+          password: f.password,
+          options: {
+            emailRedirectTo: `${window.location.origin}/#dashboard`,
+            data: {
+              full_name: String(f.full_name || '').trim(),
+              role: f.role === 'landlord' ? 'landlord' : 'student'
+            }
+          }
+        });
+        if (error) return notify(error.message, 'err');
+
+        // With Confirm Email enabled, Supabase normally returns no session.
+        // Do not treat a signup response as proof of a verified email.
+        if (data.session) await db.auth.signOut();
+        state.user = null;
+        state.profile = null;
+        closeModal();
+        notify('Check your email for a verification link before signing in.');
+        window.alert(`Check your email\n\nWe sent a verification link to ${email}.\nOpen the link, then return to VarsityStay and log in. Check spam if needed.`);
+        return;
+      }
+
+      const { data, error } = await db.auth.signInWithPassword({
+        email,
+        password: f.password
+      });
+      if (error) return notify(error.message, 'err');
+      if (!data.user?.email_confirmed_at) {
+        await db.auth.signOut();
+        state.user = null;
+        state.profile = null;
+        return notify('Please verify your email before logging in.', 'err');
+      }
+
+      await initSession();
+      closeModal();
+      notify('Signed in successfully.');
+      nav('dashboard');
+    } catch (error) {
+      notify(error?.message || 'Authentication failed. Please try again.', 'err');
+    } finally {
+      if (button) button.disabled = false;
+    }
+    return;
+  }
+
 if(e.target.id==='listing-form'){e.preventDefault();if(!requireAccount('landlord','list accommodation'))return;const f=formObject(e.target);const data={owner_id:state.user.id,title:f.title,description:f.description,city:f.city,suburb:f.suburb,university_id:f.university_id,monthly_rent:Number(f.monthly_rent),walk_minutes:Number(f.walk_minutes),room_type:f.room_type,available_rooms:Number(f.available_rooms),contact_phone:f.contact_phone,address:f.address,nsfas_friendly:!!f.nsfas_friendly,wifi:!!f.wifi,security:!!f.security,parking:!!f.parking,status:'pending'};const {data:listing,error}=await db.from('properties').insert(data).select('id').single();if(error)return notify(error.message,'err');const files=[...($('#listing-images')?.files||[])];for(const file of files.slice(0,5)){if(file.size>5*1024*1024||!['image/jpeg','image/png','image/webp'].includes(file.type)){notify('Skipped invalid or oversized image.','err');continue}const name=`${state.user.id}/${listing.id}/${crypto.randomUUID()}-${file.name.replace(/[^\w.\-]/g,'_')}`;const {error:upError}=await db.storage.from('property-images').upload(name,file,{upsert:false,contentType:file.type});if(upError){notify(upError.message,'err');continue}const {data:pub}=db.storage.from('property-images').getPublicUrl(name);await db.from('property_images').insert({property_id:listing.id,url:pub.publicUrl,path:name})}closeModal();notify('Property submitted for review.');loadDashboardTab('listings')}
 if(e.target.id==='reservation-form'){e.preventDefault();if(!requireAccount('student','request a room or viewing'))return;const f=formObject(e.target);const {error}=await db.from('reservations').insert({student_id:state.user.id,property_id:state.selected,request_type:f.request_type,message:f.message,status:'requested'});if(error)return notify(error.message,'err');closeModal();notify('Request sent. View its status in your dashboard.')}
 });
@@ -60,6 +121,14 @@ else if(tab==='complaints'){r=await db.from('complaints').select('property_name,
 else {r=await db.from('reservations').select('id,request_type,status,created_at,properties(title)').eq('student_id',state.user.id).eq('request_type','viewing');html=`<h2>My viewing requests</h2>${renderTable((r.data||[]).map(x=>({...x,property:x.properties?.title})),['property','status','created_at'])}`}
 if(r?.error)html=`<div class="empty-state compact"><h3>Couldn't load information</h3><p>${safe(r.error.message)}</p></div>`;c.innerHTML=html;createIcons({icons});c.querySelectorAll('[data-modal]').forEach(b=>b.addEventListener('click',()=>openModal(b.dataset.modal)));c.querySelector('#viewing-form')?.addEventListener('submit',async e=>{e.preventDefault();const f=formObject(e.target);if(new Date(f.end_at)<=new Date(f.start_at))return notify('The end time must be later than the start.','err');const {error}=await db.from('viewing_slots').insert({owner_id:state.user.id,property_id:f.property_id,start_at:new Date(f.start_at).toISOString(),end_at:new Date(f.end_at).toISOString()});if(error)return notify(error.message,'err');notify('Viewing availability published');loadDashboardTab('viewings')})}
 function renderTable(arr,fields){return arr?.length?`<div class="table-scroll"><table class="data-table"><thead><tr>${fields.map(f=>`<th>${f.replaceAll('_',' ')}</th>`).join('')}</tr></thead><tbody>${arr.map(x=>`<tr>${fields.map(f=>`<td>${f==='monthly_rent'?money(x[f]):f==='created_at'||f.endsWith('_at')?safe(x[f]&&new Date(x[f]).toLocaleString('en-ZA')):safe(x[f]??'—')}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`:`<div class="empty-state compact">${icon('inbox',32)}<h3>Nothing here yet</h3><p>Your account activity will appear here when it's available.</p></div>`}
-async function initSession(){if(!db)return;const {data:{user}}=await db.auth.getUser();state.user=user;if(user){const {data}=await db.from('profiles').select('*').eq('id',user.id).maybeSingle();state.profile=data}}
+async function initSession() {
+  if (!db) return;
+  const { data: { user }, error } = await db.auth.getUser();
+  state.user = error || !user?.email_confirmed_at ? null : user;
+  state.profile = null;
+  if (!state.user) return;
+  const { data } = await db.from('profiles').select('*').eq('id',user.id).maybeSingle();
+  state.profile = data;
+}
 async function fetchPublic(){if(!db)return;const [p,u,a,r]=await Promise.all([db.from('properties').select('*,property_images(url)').eq('status','published').order('created_at',{ascending:false}),db.from('universities').select('*').eq('active',true).order('name'),db.from('advertisements').select('*').eq('status','active').lte('starts_on',new Date().toISOString().slice(0,10)).gte('ends_on',new Date().toISOString().slice(0,10)).order('priority',{ascending:false}),db.from('student_reviews').select('property_name,area,rating,sentiment,body,anonymous').eq('status','published').order('created_at',{ascending:false}).limit(10)]);state.properties=(p.data||[]).map(x=>({...x,images:(x.property_images||[]).map(i=>i.url)}));state.universities=u.data||[];state.adverts=a.data||[];state.reviews=r.data||[];}
 (async()=>{await Promise.all([initSession(),fetchPublic()]);state.page=location.hash.slice(1)||'home';paint()})();
