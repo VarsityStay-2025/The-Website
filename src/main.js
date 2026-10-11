@@ -18,6 +18,9 @@ function header(){return `<header class="site-header"><div class="wrap nav"><a c
     alt="VarsityStay Logo"
     class="site-logo"
   />
+  <span class="brand-name">
+    Varsity<span class="brand-highlight">Stay</span>
+  </span>
 </a><nav class="main-nav"><a data-nav="discover" class="${state.page==='discover'?'active':''}">Explore stays</a><a data-nav="universities" class="${state.page==='universities'?'active':''}">Universities</a><a data-nav="experiences" class="${state.page==='experiences'?'active':''}">Student voices</a><a data-nav="complaints" class="${state.page==='complaints'?'active':''}">Complaints</a></nav><div class="nav-actions"><button class="nav-landlord" data-nav="landlord">List your property ${icon('arrow-up-right',15)}</button>${state.user?`<button class="account-btn" data-nav="dashboard">${icon('user-round',16)} My account</button>`:`<button class="account-btn" data-modal="auth">Log in ${icon('arrow-right',15)}</button>`}<button class="mobile-menu" id="mobile-menu" aria-label="Menu">${icon('menu',23)}</button></div></div><div class="mobile-nav" id="mobile-nav"><a data-nav="discover">Explore stays</a><a data-nav="universities">Universities</a><a data-nav="experiences">Student voices</a><a data-nav="complaints">Complaints</a><a data-nav="landlord">List a property</a><a data-nav="dashboard">Dashboard</a></div></header>`}
 function footer(){return `<footer><div class="wrap footer-grid"><div><a class="brand footer-brand" href="#home" data-nav="home">
   <img
