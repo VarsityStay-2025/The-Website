@@ -8,6 +8,262 @@ const state={page:'home',user:null,profile:null,properties:[],universities:[],sl
 const $=s=>document.querySelector(s), safe=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])), money=n=>'R'+Number(n||0).toLocaleString('en-ZA');
 const icon=(n,s=18)=>`<i data-lucide="${n}" style="width:${s}px;height:${s}px"></i>`;
 const cover=(p,i=0)=>p?.images?.[0] ? `<img src="${safe(p.images[0])}" alt="${safe(p.title)}" loading="lazy"/>` : `<div class="graphic-cover graphic-${i%5}"><div class="building-mark">${icon('building-2',38)}</div><span>VARSITYSTAY / PROPERTY</span></div>`;
+
+const CONTACT = {
+  email: "hello@varsitystay.co.za",
+  instagram: "",
+  facebook: "",
+  tiktok: "",
+  twitter: "",
+  linkedin: "",
+  whatsapp: ""
+};
+
+function contact() {
+  const socialLinks = [
+    {
+      name: "Instagram",
+      url: CONTACT.instagram,
+      symbol: "◎"
+    },
+    {
+      name: "Facebook",
+      url: CONTACT.facebook,
+      symbol: "f"
+    },
+    {
+      name: "TikTok",
+      url: CONTACT.tiktok,
+      symbol: "♪"
+    },
+    {
+      name: "X / Twitter",
+      url: CONTACT.twitter,
+      symbol: "𝕏"
+    },
+    {
+      name: "LinkedIn",
+      url: CONTACT.linkedin,
+      symbol: "in"
+    },
+    {
+      name: "WhatsApp",
+      url: CONTACT.whatsapp,
+      symbol: "✆"
+    }
+  ];
+
+  return `
+    <main class="contact-page">
+
+      <section class="contact-hero">
+        <div class="wrap">
+          <p class="contact-eyebrow">
+            VARSITYSTAY SUPPORT
+          </p>
+
+          <h1>Contact VarsityStay</h1>
+
+          <p>
+            Need help finding accommodation, listing a
+            property, or using VarsityStay?
+            We're here to help.
+          </p>
+        </div>
+      </section>
+
+      <section class="contact-section">
+        <div class="wrap contact-columns">
+
+          <div class="contact-details">
+            <p class="contact-eyebrow">
+              GET IN TOUCH
+            </p>
+
+            <h2>How can we help you?</h2>
+
+            <p>
+              Whether you're a student looking for a
+              place to stay or a landlord wanting to
+              advertise, we'd love to hear from you.
+            </p>
+
+            <div class="contact-detail">
+              <h3>Email us</h3>
+
+              <a href="mailto:${CONTACT.email}">
+                ${CONTACT.email}
+              </a>
+            </div>
+
+            <div class="contact-detail">
+              <h3>Follow VarsityStay</h3>
+
+              <div class="contact-socials">
+                ${socialLinks.map(social => `
+                  ${
+                    social.url
+                      ? `
+                        <a
+                          href="${social.url}"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="contact-social"
+                        >
+                          <span class="social-symbol">
+                            ${social.symbol}
+                          </span>
+
+                          <span>${social.name}</span>
+                        </a>
+                      `
+                      : `
+                        <div class="contact-social disabled">
+                          <span class="social-symbol">
+                            ${social.symbol}
+                          </span>
+
+                          <span>${social.name}</span>
+                          <small>Coming soon</small>
+                        </div>
+                      `
+                  }
+                `).join("")}
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-panel">
+            <p class="contact-eyebrow">
+              SEND AN ENQUIRY
+            </p>
+
+            <h2>Send us a message</h2>
+
+            <form id="varsity-contact-form">
+
+              <label for="contact-name">
+                Full name
+              </label>
+              <input
+                id="contact-name"
+                name="name"
+                type="text"
+                placeholder="Enter your full name"
+                required
+              />
+
+              <label for="contact-email">
+                Email address
+              </label>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                placeholder="you@example.com"
+                required
+              />
+
+              <label for="contact-subject">
+                What is your enquiry about?
+              </label>
+              <select
+                id="contact-subject"
+                name="subject"
+                required
+              >
+                <option value="Student accommodation">
+                  Student accommodation
+                </option>
+
+                <option value="Landlord enquiry">
+                  Landlord enquiry
+                </option>
+
+                <option value="Account support">
+                  Account support
+                </option>
+
+                <option value="Advertising">
+                  Advertising and partnerships
+                </option>
+
+                <option value="General enquiry">
+                  General enquiry
+                </option>
+              </select>
+
+              <label for="contact-message">
+                Your message
+              </label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows="6"
+                minlength="10"
+                placeholder="How can we help?"
+                required
+              ></textarea>
+
+              <button
+                type="submit"
+                class="contact-submit"
+              >
+                Open email to send →
+              </button>
+
+              <p class="contact-form-note">
+                This opens your email application
+                with your message ready to send.
+              </p>
+
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-navigation">
+        <div class="wrap">
+          <p class="contact-eyebrow">
+            EXPLORE VARSITYSTAY
+          </p>
+
+          <h2>Where would you like to go?</h2>
+
+          <div class="contact-page-links">
+
+            <a href="#home" data-nav="home">
+              Home <span>→</span>
+            </a>
+
+            <a href="#discover" data-nav="discover">
+              Find accommodation <span>→</span>
+            </a>
+
+            <a href="#universities" data-nav="universities">
+              Browse universities <span>→</span>
+            </a>
+
+            <a href="#experiences" data-nav="experiences">
+              Student experiences <span>→</span>
+            </a>
+
+            <a href="#complaints" data-nav="complaints">
+              Complaints and support <span>→</span>
+            </a>
+
+            <a href="#landlord" data-nav="landlord">
+              List your property <span>→</span>
+            </a>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+  `;
+}
+
 function notify(msg,type='ok'){const t=document.createElement('div');t.className='toast '+type;t.textContent=msg;document.body.append(t);setTimeout(()=>t.remove(),4500)}
 function paint(){document.title=`${state.page==='home'?'Find your place':state.page.replaceAll('-',' ')} · VarsityStay`;$('#app').innerHTML=`${header()}<main>${routes[state.page]?.()||home()}</main>${footer()}${modalShell()}`;createIcons({icons,attrs:{'stroke-width':1.8}});attach();}
 function nav(page){if(page==='complaints'&&!requireAccount('student','submit a complaint'))return;state.page=page;history.pushState({page},'',`#${page}`);window.scrollTo(0,0);paint();}
@@ -21,7 +277,7 @@ function header(){return `<header class="site-header"><div class="wrap nav"><a c
   <span class="brand-name">
     Varsity<span class="brand-highlight">Stay</span>
   </span>
-</a><nav class="main-nav"><a data-nav="discover" class="${state.page==='discover'?'active':''}">Explore stays</a><a data-nav="universities" class="${state.page==='universities'?'active':''}">Universities</a><a data-nav="experiences" class="${state.page==='experiences'?'active':''}">Student voices</a><a data-nav="complaints" class="${state.page==='complaints'?'active':''}">Complaints</a></nav><div class="nav-actions"><button class="nav-landlord" data-nav="landlord">List your property ${icon('arrow-up-right',15)}</button>${state.user?`<button class="account-btn" data-nav="dashboard">${icon('user-round',16)} My account</button>`:`<button class="account-btn" data-modal="auth">Log in ${icon('arrow-right',15)}</button>`}<button class="mobile-menu" id="mobile-menu" aria-label="Menu">${icon('menu',23)}</button></div></div><div class="mobile-nav" id="mobile-nav"><a data-nav="discover">Explore stays</a><a data-nav="universities">Universities</a><a data-nav="experiences">Student voices</a><a data-nav="complaints">Complaints</a><a data-nav="landlord">List a property</a><a data-nav="dashboard">Dashboard</a></div></header>`}
+</a><nav class="main-nav"><a data-nav="discover" class="${state.page==='discover'?'active':''}">Explore stays</a><a data-nav="universities" class="${state.page==='universities'?'active':''}">Universities</a><a data-nav="experiences" class="${state.page==='experiences'?'active':''}">Student voices</a><a data-nav="complaints" class="${state.page==='complaints'?'active':''}">Complaints</a></nav><a data-nav="contact">Contact</a><div class="nav-actions"><button class="nav-landlord" data-nav="landlord">List your property ${icon('arrow-up-right',15)}</button>${state.user?`<button class="account-btn" data-nav="dashboard">${icon('user-round',16)} My account</button>`:`<button class="account-btn" data-modal="auth">Log in ${icon('arrow-right',15)}</button>`}<button class="mobile-menu" id="mobile-menu" aria-label="Menu">${icon('menu',23)}</button></div></div><div class="mobile-nav" id="mobile-nav"><a data-nav="discover">Explore stays</a><a data-nav="universities">Universities</a><a data-nav="experiences">Student voices</a><a data-nav="complaints">Complaints</a><a data-nav="landlord">List a property</a><a data-nav="dashboard">Dashboard</a></div></header>`}
 function footer(){return `<footer><div class="wrap footer-grid"><div><a class="brand footer-brand" href="#home" data-nav="home">
   <img
     src="/logo.jpeg"
@@ -44,7 +300,16 @@ function dashboard(){if(!state.user)return `${pageHead('YOUR SPACE','Welcome to 
 function studentDash(){return `<div class="dash-grid"><div class="dash-side"><h3>${icon('house',18)} My stay</h3><a data-dash-tab="reservations">My reservations</a><a data-dash-tab="viewings">Viewing requests</a><a data-dash-tab="complaints">My complaints</a></div><div class="dash-main" id="dash-data"><h2>My stay</h2><p>View your reservations and accommodation requests.</p><div class="empty-state compact">${icon('calendar-days',36)}<h3>Your journey starts here</h3><p>Browse accommodation and request your first room.</p><button class="btn primary" data-nav="discover">Explore stays ${icon('arrow-right',16)}</button></div></div></div>`}
 function landlordDash(){return `<div class="dash-grid"><div class="dash-side"><h3>${icon('building-2',18)} Portfolio</h3><a data-dash-tab="listings">My listings</a><a data-dash-tab="reservations">Room enquiries</a><a data-dash-tab="viewings">Viewing slots</a></div><div class="dash-main" id="dash-data"><div class="dash-main-heading"><div><h2>My properties</h2><p>Manage submissions, availability and enquiries.</p></div><button class="btn primary" data-modal="addListing">${icon('plus',16)} Add listing</button></div><div id="owner-listings"><p class="muted">Loading your listings…</p></div></div></div>`}
 function modalShell(){return `<div class="modal-backdrop" id="modal" aria-hidden="true"><div class="modal-panel"><button class="modal-close" id="close-modal" aria-label="Close">${icon('x',20)}</button><div id="modal-content"></div></div></div>`}
-const routes={home,discover,universities,landlord,experiences,complaints,dashboard};
+const routes = {
+  home,
+  discover,
+  universities,
+  landlord,
+  experiences,
+  complaints,
+  contact,
+  dashboard
+};
 function requireAccount(role,action){
   if(!state.user){notify(`Create an account or log in to ${action}.`,'err');openModal(role==='landlord'?'landlordAuth':'auth');return false}
   if(!state.user.email_confirmed_at){notify('Verify your email address before continuing.','err');return false}
@@ -147,3 +412,36 @@ async function initSession() {
 }
 async function fetchPublic(){if(!db)return;const [p,u,a,r]=await Promise.all([db.from('properties').select('*,property_images(url)').eq('status','published').order('created_at',{ascending:false}),db.from('universities').select('*').eq('active',true).order('name'),db.from('advertisements').select('*').eq('status','active').lte('starts_on',new Date().toISOString().slice(0,10)).gte('ends_on',new Date().toISOString().slice(0,10)).order('priority',{ascending:false}),db.from('student_reviews').select('property_name,area,rating,sentiment,body,anonymous').eq('status','published').order('created_at',{ascending:false}).limit(10)]);state.properties=(p.data||[]).map(x=>({...x,images:(x.property_images||[]).map(i=>i.url)}));state.universities=u.data||[];state.adverts=a.data||[];state.reviews=r.data||[];}
 (async()=>{await Promise.all([initSession(),fetchPublic()]);state.page=location.hash.slice(1)||'home';paint()})();
+
+document.addEventListener("submit", function (event) {
+  if (event.target.id !== "varsity-contact-form") {
+    return;
+  }
+
+  event.preventDefault();
+
+  const form = event.target;
+  const data = new FormData(form);
+
+  const name = data.get("name");
+  const email = data.get("email");
+  const subject = data.get("subject");
+  const message = data.get("message");
+
+  const emailSubject = encodeURIComponent(
+    "VarsityStay Enquiry: " + subject
+  );
+
+  const emailBody = encodeURIComponent(
+    "Name: " + name + "\n" +
+    "Email: " + email + "\n" +
+    "Subject: " + subject + "\n\n" +
+    "Message:\n" + message
+  );
+
+  window.location.href =
+    "mailto:" + CONTACT.email +
+    "?subject=" + emailSubject +
+    "&body=" + emailBody;
+});
+
