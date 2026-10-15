@@ -269,7 +269,7 @@ function header(){return `<header class="site-header"><div class="wrap nav"><a c
 </a><nav class="main-nav"><a href="#discover" data-nav="discover" class="${state.page==='discover'?'active':''}">Explore stays</a><a href="#universities" data-nav="universities" class="${state.page==='universities'?'active':''}">Universities</a><a href="#experiences" data-nav="experiences" class="${state.page==='experiences'?'active':''}">Student voices</a><a href="#complaints" data-nav="complaints" class="${state.page==='complaints'?'active':''}">Complaints</a><a href="#contact" data-nav="contact" class="${state.page==='contact'?'active':''}">Contact</a></nav><div class="nav-actions"><button class="nav-landlord" data-nav="landlord">List your property ${icon('arrow-up-right',15)}</button>${state.user?`<button class="account-btn" data-nav="dashboard">${icon('user-round',16)} My account</button>`:`<button class="account-btn" data-modal="auth">Log in ${icon('arrow-right',15)}</button>`}<button class="mobile-menu" id="mobile-menu" aria-label="Toggle navigation menu">Menu</button></div></div><div class="mobile-nav" id="mobile-nav"><a href="#discover" data-nav="discover">Explore stays</a><a href="#universities" data-nav="universities">Universities</a><a href="#experiences" data-nav="experiences">Student voices</a><a href="#complaints" data-nav="complaints">Complaints</a><a href="#contact" data-nav="contact">Contact</a><a href="#landlord" data-nav="landlord">List a property</a><a href="#dashboard" data-nav="dashboard">Dashboard</a></div></header>`}
 function footer(){return `<footer><div class="wrap footer-grid"><div><a class="brand footer-brand" href="#home" data-nav="home">
   <img
-    src="/logo.svg"
+    src="/logo.jpeg"
     alt=""
     class="site-logo"
   />
