@@ -259,7 +259,7 @@ function nav(page){if(page==='complaints'&&!requireAccount('student','submit a c
 window.addEventListener('popstate',()=>{state.page=location.hash.slice(1)||'home';paint()});
 function header(){return `<header class="site-header"><div class="wrap nav"><a class="brand" href="#home" data-nav="home">
   <img
-    src="/logo.svg"
+    src="/logo.jpeg"
     alt=""
     class="site-logo"
   />
