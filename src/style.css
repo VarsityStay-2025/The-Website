@@ -760,3 +760,8 @@ footer a, footer .brand { color: #FFFFFF !important; }
 .section {padding-top:60px;padding-bottom:60px;}
 @media(max-width:900px){.community-teaser .callout-row {display:block;}.community-side-note {margin-top:30px;max-width:none;}}
 @media(max-width:768px){.site-header .brand-name{font-size:19px;}.search-panel{padding:19px !important;}.steps-grid{grid-template-columns:1fr;}.section{padding-top:45px;padding-bottom:45px;}}
+
+/* Header brand logo: image and wordmark */
+.site-header .brand { display:inline-flex; align-items:center; gap:10px; flex-shrink:0; text-decoration:none; }
+.site-header .header-logo { display:block; width:44px; height:44px; max-width:none; object-fit:contain; flex:0 0 44px; }
+@media(max-width:768px) { .site-header .header-logo { width:36px; height:36px; flex-basis:36px; } }
