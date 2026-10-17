@@ -94,3 +94,630 @@ h1 em, h2 em { font-style: normal; color: inherit !important; }
 }
 .hero-right .search-card-head { background: #17252c; color: #fffdf8; }
 .hero .hero-copy em { color: #e6aa75 !important; }
+
+/* Clear, flat navigation and buttons: square, not pill-shaped. */
+.brand-mark { background: #c64b20 !important; color: #fffdf8; }
+.brand, .brand-name { font-weight: 700; letter-spacing: 0; }
+.btn, .account-btn, .nav-landlord, .search-btn, .details-btn,
+.text-link, .auth-toggle button, .pill-check, .tag, .verification,
+.advert-tag, .price-tag, .property-chips span, .detail-amenities span {
+  
+}
+.btn, .account-btn, .nav-landlord, .search-btn {
+  font-weight: 700;
+  transition: background-color .15s ease, color .15s ease;
+}
+.btn.primary, .search-btn { background: #c64b20 !important; color: #fffdf8 !important; border: 1px solid #c64b20 !important; }
+.btn.primary:hover, .search-btn:hover { background: #9e3716 !important; border-color: #9e3716 !important; }
+.btn.dark, .btn.outline, .details-btn { background: #17252c !important; color: #fffdf8 !important; border: 1px solid #17252c !important; }
+.btn.ghost { background: transparent !important; border: 1px solid #fffdf8 !important; color: #fffdf8 !important; }
+
+/* Sections alternate by purpose, not an endless repeated card background. */
+.ads-section { background: #e9e4d8 !important; }
+.section.light { background: #fffdf8 !important; }
+.section.how { background: #f4f1e9 !important; }
+.community-teaser { background: #e8ede9 !important; }
+.split-feature { background: #283e43 !important; }
+
+/* Traditional content cards, simple equal columns and clear rules. */
+.property-card, .review-card, .uni-card, .ad-card, .advert-empty,
+.step, .contact-social, .guidance-step, .dash-side, .dash-main,
+.empty-state, .quote-design {
+  border: 1px solid #cbd0cc;
+  background: #fffdf8;
+  
+}
+.property-grid, .ad-grid, .steps-grid, .uni-grid {
+  grid-auto-rows: auto;
+  align-items: stretch;
+}
+.property-cover, .uni-art, .graphic-cover, .graphic-0,
+.graphic-1, .graphic-2, .graphic-3, .graphic-4 {
+  background: #dce1da !important;
+  color: #17252c;
+}
+/* Property photos are displayed only when uploaded by landlords. */
+.property-cover img, .modal-photo img { object-fit: cover; }
+.property-card:hover, .uni-card:hover, .ad-card:hover { transform: none !important; }
+
+/* Forms: practical borders, no floating glass or soft pill treatments. */
+input, textarea, select, .pill-check, .contact-social {
+  background-color: #fffdf8 !important;
+  border: 1px solid #aeb8b3 !important;
+  color: #17252c;
+}
+input:focus-visible, textarea:focus-visible, select:focus-visible,
+button:focus-visible, a:focus-visible {
+  outline: 2px solid #c64b20;
+  outline-offset: 2px;
+}
+input[type="range"] { accent-color: #c64b20; }
+input[type="checkbox"] { accent-color: #c64b20; }
+
+/* Flat modal and feedback. */
+.modal-backdrop { background: rgba(13, 26, 31, .78) !important; }
+.toast { background: #17252c !important; color: #fffdf8 !important; border: 1px solid #cbd0cc; }
+
+/* Icons: no decorative glow or floating shapes. Existing Lucide icons
+   remain for function; use a stronger stroke for legibility. */
+[data-lucide] { stroke-width: 2.4 !important; filter: none !important; }
+
+/* Keep contact page clean and legible. */
+.contact-layout { align-items: start; }
+.contact-social-grid { gap: 10px; }
+.contact-social { padding: 14px; }
+.contact-social.is-pending { opacity: .7; }
+
+@media (max-width: 768px) {
+  h1 { font-size: clamp(2rem, 7vw, 2.7rem) !important; }
+  h2 { font-size: clamp(1.55rem, 5vw, 2rem) !important; }
+  .wrap { padding-left: 18px; padding-right: 18px; }
+}
+
+/* Contact page */
+.contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 80px); align-items: start; }
+.contact-info > p { max-width: 52ch; }
+.contact-email { display: inline-flex; align-items: center; gap: 12px; margin: 24px 0 32px; font-weight: 700; color: #2563eb; overflow-wrap: anywhere; }
+.contact-info h3 { margin-bottom: 16px; }
+.contact-social-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.contact-social { display: flex; align-items: center; gap: 10px; padding: 14px; border: 1px solid #e2e8f0;  color: #0f172a; background: white; text-decoration: none; }
+.contact-social span { flex: 1; }
+.contact-social.is-pending { opacity: .65; }
+.contact-social small { font-size: 11px; }
+.contact-note { font-size: 12px; margin-top: 14px; color: #64748b; }
+@media (max-width: 800px) { .contact-layout { grid-template-columns: 1fr; } }
+@media (max-width: 440px) { .contact-social-grid { grid-template-columns: 1fr; } }
+
+/* Contact page internal navigation */
+.contact-directory { background: #fffdf8; }
+.contact-directory h2 { max-width: 720px; }
+.contact-directory-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1px; margin-top: 28px; border: 1px solid #cbd1cd; background: #cbd1cd; }
+.contact-directory-link { display: flex; flex-direction: column; gap: 9px; padding: 24px; background: #fffdf8; color: #17252c; text-decoration: none;   }
+.contact-directory-link:hover, .contact-directory-link:focus-visible { background: #e8ede9; outline-offset: -3px; }
+.contact-directory-link strong { font-size: 1.05rem; }
+.contact-directory-link span { font-size: .9rem; color: #4d5c61; }
+@media(max-width: 850px) { .contact-directory-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media(max-width: 540px) { .contact-directory-grid { grid-template-columns: 1fr; } }
+
+
+body { background: var(--white); color: var(--ink); }
+
+/* Typography: moderate editorial scale, not giant display lettering. */
+h1, h2, h3, h4, .brand, button, input, select, textarea {
+  font-family: "DM Sans", Arial, sans-serif;
+  letter-spacing: normal;
+}
+h1 { font-size: clamp(2.2rem, 4vw, 3.5rem) !important; line-height: 1.13; font-weight: 700; }
+h2 { font-size: clamp(1.65rem, 2.7vw, 2.35rem) !important; line-height: 1.24; font-weight: 700; }
+h3 { font-size: clamp(1.1rem, 1.6vw, 1.4rem); font-weight: 700; }
+p { line-height: 1.6; }
+h1 em, h2 em { font-style: normal; color: inherit !important; }
+
+/* Consistent brand colours without a generic tech palette. */
+
+.hero-glow, .building-shape, .floating-stat, .landlord-illustration,
+.quote-design, .eyedot, .hero-bottomline svg { display: none !important; }
+.hero-right, .search-panel, .form-card, .modal-panel {
+  background: #fffdf8 !important;
+  color: #17252c;
+  border: 1px solid #cbd0cc;
+}
+.hero-right .search-card-head { background: #17252c; color: #fffdf8; }
+.hero .hero-copy em { color: #e6aa75 !important; }
+
+/* Clear, flat navigation and buttons: square, not pill-shaped. */
+.brand-mark { background: #c64b20 !important; color: #fffdf8; }
+.brand, .brand-name { font-weight: 700; letter-spacing: 0; }
+.btn, .account-btn, .nav-landlord, .search-btn, .details-btn,
+.text-link, .auth-toggle button, .pill-check, .tag, .verification,
+.advert-tag, .price-tag, .property-chips span, .detail-amenities span {
+  border-radius: 0 !important;
+}
+.btn, .account-btn, .nav-landlord, .search-btn {
+  font-weight: 700;
+  transition: background-color .15s ease, color .15s ease;
+}
+.btn.primary, .search-btn { background: #c64b20 !important; color: #fffdf8 !important; border: 1px solid #c64b20 !important; }
+.btn.primary:hover, .search-btn:hover { background: #9e3716 !important; border-color: #9e3716 !important; }
+.btn.dark, .btn.outline, .details-btn { background: #17252c !important; color: #fffdf8 !important; border: 1px solid #17252c !important; }
+.btn.ghost { background: transparent !important; border: 1px solid #fffdf8 !important; color: #fffdf8 !important; }
+
+/* Sections alternate by purpose, not an endless repeated card background. */
+.ads-section { background: #e9e4d8 !important; }
+.section.light { background: #fffdf8 !important; }
+.section.how { background: #f4f1e9 !important; }
+.community-teaser { background: #e8ede9 !important; }
+.split-feature { background: #283e43 !important; }
+
+/* Traditional content cards, simple equal columns and clear rules. */
+.property-card, .review-card, .uni-card, .ad-card, .advert-empty,
+.step, .contact-social, .guidance-step, .dash-side, .dash-main,
+.empty-state, .quote-design {
+  border: 1px solid #cbd0cc;
+  background: #fffdf8;
+  box-shadow: none !important;
+}
+.property-grid, .ad-grid, .steps-grid, .uni-grid {
+  grid-auto-rows: auto;
+  align-items: stretch;
+}
+.property-cover, .uni-art, .graphic-cover, .graphic-0,
+.graphic-1, .graphic-2, .graphic-3, .graphic-4 {
+  background: #dce1da !important;
+  color: #17252c;
+}
+/* Property photos are displayed only when uploaded by landlords. */
+.property-cover img, .modal-photo img { object-fit: cover; }
+.property-card:hover, .uni-card:hover, .ad-card:hover { transform: none !important; }
+
+/* Forms: practical borders, no floating glass or soft pill treatments. */
+input, textarea, select, .pill-check, .contact-social {
+  background-color: #fffdf8 !important;
+  border: 1px solid #aeb8b3 !important;
+  color: #17252c;
+}
+input:focus-visible, textarea:focus-visible, select:focus-visible,
+button:focus-visible, a:focus-visible {
+  outline: 2px solid #c64b20;
+  outline-offset: 2px;
+}
+input[type="range"] { accent-color: #c64b20; }
+input[type="checkbox"] { accent-color: #c64b20; }
+
+/* Flat modal and feedback. */
+.modal-backdrop { background: rgba(13, 26, 31, .78) !important; }
+.toast { background: #17252c !important; color: #fffdf8 !important; border: 1px solid #cbd0cc; }
+
+/* Icons: no decorative glow or floating shapes. Existing Lucide icons
+   remain for function; use a stronger stroke for legibility. */
+
+
+/* Keep contact page clean and legible. */
+.contact-layout { align-items: start; }
+.contact-social-grid { gap: 10px; }
+.contact-social { padding: 14px; }
+.contact-social.is-pending { opacity: .7; }
+
+@media (max-width: 768px) {
+  h1 { font-size: clamp(2rem, 7vw, 2.7rem) !important; }
+  h2 { font-size: clamp(1.55rem, 5vw, 2rem) !important; }
+  .wrap { padding-left: 18px; padding-right: 18px; }
+}
+
+/* VarsityStay logo */
+.site-logo {
+  width: auto;
+  height: 68px;
+  max-width: 180px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Mobile logo */
+@media (max-width: 768px) {
+  .site-logo {
+    height: 48px;
+    max-width: 140px;
+  }
+}
+
+/* ==========================================
+   VARSITYSTAY CONTACT PAGE
+   Clean, flat, responsive design
+========================================== */
+
+.contact-page {
+  color: #17252c;
+  background: #fffdf8;
+  font-family: "DM Sans", sans-serif;
+}
+
+.contact-page *,
+.contact-page *::before,
+.contact-page *::after {
+  box-sizing: border-box;
+}
+
+.contact-page .wrap {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.contact-hero {
+  padding: 76px 0 68px;
+  background: #17252c;
+  color: #fffdf8;
+}
+
+.contact-eyebrow {
+  margin-bottom: 18px;
+  color: #c64b20;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.contact-hero .contact-eyebrow {
+  color: #f0a182;
+}
+
+.contact-hero h1 {
+  margin: 0 0 20px;
+  font-family: "Sora", sans-serif;
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.contact-hero p:last-child {
+  max-width: 570px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #d8dedb;
+}
+
+.contact-section {
+  padding: 80px 0;
+  background: #fffdf8;
+}
+
+.contact-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: start;
+}
+
+.contact-details h2,
+.contact-form-panel h2,
+.contact-navigation h2 {
+  margin: 0 0 22px;
+  font-family: "Sora", sans-serif;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.contact-details > p {
+  color: #526066;
+  line-height: 1.8;
+}
+
+.contact-detail {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid #dce1de;
+}
+
+.contact-detail h3 {
+  margin-bottom: 14px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.contact-detail > a {
+  color: #c64b20;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+.contact-socials {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.contact-social {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 54px;
+  padding: 12px;
+  border: 1px solid #dce1de;
+  border-radius: 0;
+  background: #ffffff;
+  color: #17252c;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.contact-social:hover {
+  border-color: #c64b20;
+  color: #c64b20;
+}
+
+.contact-social.disabled {
+  opacity: 0.55;
+}
+
+.contact-social small {
+  margin-left: auto;
+  font-size: 10px;
+}
+
+.social-symbol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.contact-form-panel {
+  padding: 36px;
+  border: 1px solid #dce1de;
+  background: #f4f1e9;
+}
+
+#varsity-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#varsity-contact-form label {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+#varsity-contact-form input,
+#varsity-contact-form select,
+#varsity-contact-form textarea {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #c6ceca;
+  border-radius: 0;
+  background: #ffffff;
+  color: #17252c;
+  font: inherit;
+  font-size: 14px;
+  outline: none;
+}
+
+#varsity-contact-form input:focus,
+#varsity-contact-form select:focus,
+#varsity-contact-form textarea:focus {
+  border-color: #c64b20;
+  outline: 2px solid #c64b20;
+  outline-offset: 2px;
+}
+
+#varsity-contact-form textarea {
+  resize: vertical;
+}
+
+.contact-submit {
+  width: 100%;
+  margin-top: 14px;
+  padding: 15px 20px;
+  border: 0;
+  border-radius: 0;
+  background: #c64b20;
+  color: #ffffff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.contact-submit:hover {
+  background: #a73d19;
+}
+
+.contact-form-note {
+  font-size: 12px;
+  color: #64716c;
+  line-height: 1.6;
+}
+
+.contact-navigation {
+  padding: 70px 0 90px;
+  border-top: 1px solid #dce1de;
+  background: #e8ede9;
+}
+
+.contact-page-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: #c6ceca;
+  border: 1px solid #c6ceca;
+}
+
+.contact-page-links a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  min-height: 85px;
+  padding: 20px;
+  background: #fffdf8;
+  color: #17252c;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.contact-page-links a:hover {
+  color: #c64b20;
+  background: #f4f1e9;
+}
+
+.contact-page-links a span {
+  font-size: 20px;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .contact-columns {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .contact-page-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .contact-hero {
+    padding: 55px 0;
+  }
+
+  .contact-section {
+    padding: 50px 0;
+  }
+
+  .contact-form-panel {
+    padding: 22px;
+  }
+
+  .contact-socials,
+  .contact-page-links {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-navigation {
+    padding: 50px 0;
+  }
+}
+
+
+/* Flat editorial VarsityStay theme */
+:root {
+ --white:#fffdf8;--ink:#17252c;--dark:#17252c;
+ --orange:#c64b20;--muted:#56635e;--border:#cbd0cc;
+ color:#17252c;background:#fffdf8;
+ font-family:"DM Sans",Arial,sans-serif;
+}
+*,*::before,*::after { border-radius:0 !important;box-shadow:none !important;text-shadow:none !important; }
+body { background:#fffdf8; color:#17252c; }
+.site-header { background:#fffdf8 !important; color:#17252c !important;border-bottom:1px solid #cbd0cc; }
+.site-header .brand,.site-header .main-nav a,.site-header .nav-actions button:not(.nav-landlord) { color:#17252c; }
+.site-logo { height:46px; max-width:70px; object-fit:contain; }
+.brand-name { font-family:"Sora",sans-serif; font-size:21px; font-weight:700; color:#17252c; }
+.brand-highlight { color:#c64b20; }
+.mobile-menu { min-width:64px; font:600 14px "DM Sans",sans-serif; }
+.hero { background:#17252c !important;color:#fffdf8 !important; }
+.hero-copy h1 { max-width:760px; }
+.hero-right,.search-panel { background:#fffdf8 !important;color:#17252c !important; }
+.btn.primary,.nav-landlord,.contact-submit { background:#c64b20 !important;color:white !important;border:1px solid #c64b20 !important; }
+.btn.primary:hover,.nav-landlord:hover,.contact-submit:hover { background:#983d1c !important; }
+.landlord-editorial {display:flex;align-items:center;justify-content:center;padding:44px;border:1px solid #73817c;min-height:280px;color:#fffdf8; }
+.landlord-editorial strong {font:600 clamp(1.4rem,3vw,2.6rem)/1.3 "Sora",sans-serif; }
+.section.light { background:#fffdf8 !important; }
+.section.how { background:#f4f1e9 !important; }
+.community-teaser { background:#e8ede9 !important; }
+.ads-section { background:#e9e4d8 !important; }
+.split-feature,.interior-hero,footer { background:#17252c !important;color:#fffdf8 !important; }
+.property-card,.uni-card,.review-card,.ad-card,.form-card,.modal-panel { background:#fffdf8 !important;border:1px solid #cbd0cc !important; }
+.graphic-cover,.graphic-0,.graphic-1,.graphic-2,.graphic-3,.graphic-4 { background:#e8ede9 !important; color:#17252c !important; }
+.contact-page .wrap { max-width:1120px; }
+.contact-hero { background:#17252c;color:#fffdf8; }
+.contact-form-panel { background:#f4f1e9; }
+.contact-social { text-align:left; }
+.contact-page-links a { color:#17252c; }
+[data-lucide],.lucide,.eyedot,.hero-glow,.building-shape,.floating-stat { display:none !important; }
+@media(max-width:768px) {
+ .site-logo {height:39px}
+ .brand-name {font-size:18px}
+ .contact-columns {grid-template-columns:1fr}
+ .landlord-editorial {min-height:180px}
+}
+
+
+/* VarsityStay original palette restoration — append last */
+:root {
+  --vs-dark: #0F172A;
+  --vs-orange: #F97316;
+  --vs-paper: #FFFFFF;
+  --vs-border: #CBD5E1;
+  --vs-text: #0F172A;
+  --vs-muted: #475569;
+  --white: #FFFFFF;
+  --ink: #0F172A;
+  --dark: #0F172A;
+  --orange: #F97316;
+  --muted: #475569;
+  --border: #CBD5E1;
+  --accent: #2563EB;
+}
+body, .site-header, .section.light, .contact-section, .contact-page { background: #FFFFFF !important; color: #0F172A !important; }
+.site-header { border-bottom-color: #CBD5E1 !important; }
+.site-header .brand, .site-header .main-nav a, .site-header .nav-actions button:not(.nav-landlord), .brand-name { color: #0F172A !important; }
+.brand-highlight, .main-nav a.active, .main-nav a:hover, .contact-detail > a { color: #2563EB !important; }
+.hero, .interior-hero, .split-feature, footer, .contact-hero { background: #0F172A !important; color: #FFFFFF !important; }
+.hero-copy h1, .hero-copy > p, .hero-trust span { color: #FFFFFF !important; }
+.hero-copy h1 em, .hero .eyebrow, .contact-hero .contact-eyebrow { color: #FDBA74 !important; }
+.hero-right, .search-panel, .form-card, .contact-form-panel, .modal-panel, .property-card, .uni-card, .ad-card { background: #FFFFFF !important; color: #0F172A !important; border-color: #CBD5E1 !important; }
+.search-card-head { background: #0F172A !important; color: #FFFFFF !important; }
+.search-panel label, .search-panel .budget-top span, .search-panel select, .search-panel input, .search-panel textarea { color: #0F172A !important; }
+.search-panel select, .search-panel input, .search-panel textarea { background: #FFFFFF !important; border-color: #94A3B8 !important; -webkit-text-fill-color: #0F172A; }
+.search-panel select option { background: #FFFFFF !important; color: #0F172A !important; }
+.search-eyebrow, .micro-label, .contact-eyebrow { color: #2563EB !important; }
+.btn.primary, .nav-landlord, .search-btn, .contact-submit { background: #F97316 !important; border-color: #F97316 !important; color: #0F172A !important; }
+.btn.primary:hover, .nav-landlord:hover, .search-btn:hover, .contact-submit:hover { background: #EA580C !important; border-color: #EA580C !important; color: #FFFFFF !important; }
+.account-btn { background: #FFFFFF !important; color: #0F172A !important; border: 1px solid #0F172A !important; }
+.btn.ghost { border-color: #FFFFFF !important; color: #FFFFFF !important; }
+.budget-top strong, .brand-highlight { color: #2563EB !important; }
+input[type=range], input[type=checkbox] { accent-color: #2563EB !important; }
+.section.how, .contact-navigation { background: #F1F5F9 !important; }
+.ads-section { background: #EFF6FF !important; }
+.community-teaser { background: #F8FAFC !important; }
+.pill-check, .contact-social, .contact-page-links a { background: #FFFFFF !important; color: #0F172A !important; border-color: #CBD5E1 !important; }
+footer a, footer .brand { color: #FFFFFF !important; }
+:where(a, button, input, textarea, select):focus-visible { outline: 2px solid #2563EB !important; outline-offset: 3px; }
+/* Maintain the user's flat, square design. */
+*, *::before, *::after { border-radius: 0 !important; box-shadow: none !important; text-shadow: none !important; }
+
+
+/* ===== OCTOBER 2026: HOMEPAGE CONTRAST AND LAYOUT REPAIR ===== */
+:root { --dark:#000B3D; --vs-dark:#000B3D; --ink:#000B3D; --orange:#F97316; --vs-orange:#F97316; --accent:#2563EB; }
+.hero,.interior-hero,.split-feature,footer,.search-card-head,.contact-hero { background:#000B3D !important; }
+.hero-copy h1,.hero-copy > p,.hero-trust span { color:#FFFFFF !important; }
+.hero-copy h1 em,.hero .eyebrow { color:#FDBA74 !important; }
+.btn.primary,.nav-landlord,.search-btn { background:#F97316 !important; border-color:#F97316 !important; color:#000B3D !important; }
+.btn.primary:hover,.nav-landlord:hover,.search-btn:hover { background:#EA580C !important; border-color:#EA580C !important; color:#FFFFFF !important; }
+.account-btn { background:#FFFFFF !important; border:1px solid #000B3D !important; color:#000B3D !important; }
+.search-panel,.hero-right { background:#FFFFFF !important; color:#000B3D !important; }
+.search-panel select,.search-panel input:not([type=checkbox]):not([type=range]),.search-panel textarea { background:#FFFFFF !important; color:#000B3D !important; border:1px solid #CBD5E1 !important; -webkit-text-fill-color:#000B3D !important; opacity:1 !important; }
+.search-panel select option { background:#FFFFFF !important; color:#000B3D !important; }
+.search-panel label,.search-panel .budget-top span { color:#000B3D !important; }
+.search-panel { padding:25px; }
+.step { display:block !important; min-height:205px; padding:28px !important; background:#FFFFFF !important; color:#000B3D !important; border:1px solid #DCE2E8 !important; opacity:1 !important; }
+.step h3 { color:#000B3D !important; font-size:19px !important; line-height:1.4; margin:14px 0 10px; opacity:1 !important; }
+.step p { color:#475569 !important; font-size:14px; line-height:1.7; opacity:1 !important; }
+.step-num { color:#2563EB !important; font-size:13px; font-weight:700; opacity:1 !important; }
+.steps-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; align-items:stretch; }
+.section { padding-top:65px; padding-bottom:65px; }
+.empty-state { padding:45px 25px; }
+.site-logo { height:50px; width:auto; max-width:100px; object-fit:contain; }
+.footer-brand .site-logo { height:65px; max-width:120px; }
+.site-header .main-nav a { color:#000B3D !important; }
+@media(max-width:900px) { .steps-grid { grid-template-columns:1fr; } }
+@media(max-width:768px) { .section { padding-top:45px; padding-bottom:45px; } }
