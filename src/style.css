@@ -721,3 +721,42 @@ footer a, footer .brand { color: #FFFFFF !important; }
 .site-header .main-nav a { color:#000B3D !important; }
 @media(max-width:900px) { .steps-grid { grid-template-columns:1fr; } }
 @media(max-width:768px) { .section { padding-top:45px; padding-bottom:45px; } }
+
+
+/* VarsityStay final refinement: original navy, blue and orange */
+:root { --vs-dark:#000B3D; --dark:#000B3D; --ink:#000B3D; --orange:#F97316; --accent:#2563EB; }
+.hero,.interior-hero,.split-feature,footer,.search-card-head,.contact-hero {background:#000B3D !important;}
+/* Remove decorative icon boxes entirely; keep real content visible. */
+.step-icon,.step .step-icon,.step svg,.step i {display:none !important;}
+.step {padding:26px 25px !important; min-height:0 !important; display:flex !important;flex-direction:column;align-items:flex-start;gap:10px;}
+.step-num {display:block !important;margin:0 !important;color:#2563EB !important;font-weight:700;letter-spacing:.1em;}
+.step h3 {margin:0 !important;color:#000B3D !important;}
+.step p {margin:0 !important;color:#475569 !important;max-width:35ch;}
+.steps-grid {align-items:stretch;gap:18px;}
+/* Header and footer typography instead of a tiny, unofficial placeholder logo. */
+.site-header .brand-name {font-family:'Sora','DM Sans',sans-serif;font-weight:700;letter-spacing:-.04em;color:#000B3D !important;font-size:23px;}
+.site-header .brand-highlight {color:#2563EB !important;}
+.footer-wordmark {font-family:'Sora','DM Sans',sans-serif;font-size:25px;letter-spacing:-.04em;font-weight:700;color:#fff;}
+.footer-wordmark span {color:#F97316;}
+.footer-brand {display:inline-flex;align-items:center;min-height:42px;}
+/* Consistent controls and accessible contrast. */
+.search-panel {padding:26px !important;}
+.search-panel .filters-row {gap:12px;}
+.search-panel select {min-width:0;width:100%;height:46px; padding:10px 9px !important;background:#fff !important;color:#000B3D !important;}
+.search-panel label {min-width:0;color:#000B3D !important;}
+.search-panel .amenity-row {gap:8px;display:flex;flex-wrap:wrap;}
+.search-panel .pill-check {display:inline-flex;align-items:center;gap:6px;padding:10px 11px;white-space:nowrap;}
+.search-panel .search-btn {min-height:50px;}
+.account-btn {background:#fff !important;color:#000B3D !important;border:1px solid #000B3D !important;}
+.nav-landlord,.btn.primary,.search-btn {background:#F97316 !important;color:#000B3D !important;border-color:#F97316 !important;}
+/* Real content rather than an empty half-section. */
+.community-teaser .callout-row {align-items:center;gap:40px;}
+.community-side-note {max-width:390px;border-left:3px solid #F97316;padding:18px 0 18px 25px;color:#000B3D;}
+.community-side-note span {display:block;font-size:11px;letter-spacing:.13em;color:#2563EB;font-weight:700;margin-bottom:12px;}
+.community-side-note strong {display:block;font:600 clamp(20px,2.2vw,30px)/1.25 'Sora','DM Sans',sans-serif;}
+.community-side-note p {font-size:14px;color:#475569;margin-top:12px;}
+/* Compact empty listings when no real properties are available. */
+.empty-state {padding:36px 25px !important;min-height:0 !important;}
+.section {padding-top:60px;padding-bottom:60px;}
+@media(max-width:900px){.community-teaser .callout-row {display:block;}.community-side-note {margin-top:30px;max-width:none;}}
+@media(max-width:768px){.site-header .brand-name{font-size:19px;}.search-panel{padding:19px !important;}.steps-grid{grid-template-columns:1fr;}.section{padding-top:45px;padding-bottom:45px;}}
