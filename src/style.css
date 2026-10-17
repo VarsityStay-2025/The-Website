@@ -9,7 +9,127 @@ h1,h2,h3,h4{font-family:'Sora',sans-serif;letter-spacing:-.035em;line-height:1.1
 .site-header{background:rgba(15,23,42,.97);border-bottom:1px solid rgba(255,255,255,.06);position:sticky;top:0;}
 .nav{height:68px}.brand{font-family:'Sora',sans-serif;letter-spacing:-.06em}.brand-mark{background:var(--royal);}.main-nav a{font-size:14px;font-weight:500;color:rgba(255,255,255,.7)}
 .hero{background:#f7f4ec}
-.hero-glow{background:#f7f4ec}
+.hero-glow{background:#f7f4ec}    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .contact-page-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .contact-hero {
+    padding: 55px 0;
+  }
+
+  .contact-section {
+    padding: 50px 0;
+  }
+
+  .contact-form-panel {
+    padding: 22px;
+  }
+
+  .contact-socials,
+  .contact-page-links {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-navigation {
+    padding: 50px 0;
+  }
+}
+
+
+/* Flat editorial VarsityStay theme */
+:root {
+ --white:#fffdf8;--ink:#17252c;--dark:#17252c;
+ --orange:#c64b20;--muted:#56635e;--border:#cbd0cc;
+ color:#17252c;background:#fffdf8;
+ font-family:"DM Sans",Arial,sans-serif;
+}
+*,*::before,*::after { border-radius:0 !important;box-shadow:none !important;text-shadow:none !important; }
+body { background:#fffdf8; color:#17252c; }
+.site-header { background:#fffdf8 !important; color:#17252c !important;border-bottom:1px solid #cbd0cc; }
+.site-header .brand,.site-header .main-nav a,.site-header .nav-actions button:not(.nav-landlord) { color:#17252c; }
+.site-logo { height:46px; max-width:70px; object-fit:contain; }
+.brand-name { font-family:"Sora",sans-serif; font-size:21px; font-weight:700; color:#17252c; }
+.brand-highlight { color:#c64b20; }
+.mobile-menu { min-width:64px; font:600 14px "DM Sans",sans-serif; }
+.hero { background:#17252c !important;color:#fffdf8 !important; }
+.hero-copy h1 { max-width:760px; }
+.hero-right,.search-panel { background:#fffdf8 !important;color:#17252c !important; }
+.btn.primary,.nav-landlord,.contact-submit { background:#c64b20 !important;color:white !important;border:1px solid #c64b20 !important; }
+.btn.primary:hover,.nav-landlord:hover,.contact-submit:hover { background:#983d1c !important; }
+.landlord-editorial {display:flex;align-items:center;justify-content:center;padding:44px;border:1px solid #73817c;min-height:280px;color:#fffdf8; }
+.landlord-editorial strong {font:600 clamp(1.4rem,3vw,2.6rem)/1.3 "Sora",sans-serif; }
+.section.light { background:#fffdf8 !important; }
+.section.how { background:#f4f1e9 !important; }
+.community-teaser { background:#e8ede9 !important; }
+.ads-section { background:#e9e4d8 !important; }
+.split-feature,.interior-hero,footer { background:#17252c !important;color:#fffdf8 !important; }
+.property-card,.uni-card,.review-card,.ad-card,.form-card,.modal-panel { background:#fffdf8 !important;border:1px solid #cbd0cc !important; }
+.graphic-cover,.graphic-0,.graphic-1,.graphic-2,.graphic-3,.graphic-4 { background:#e8ede9 !important; color:#17252c !important; }
+.contact-page .wrap { max-width:1120px; }
+.contact-hero { background:#17252c;color:#fffdf8; }
+.contact-form-panel { background:#f4f1e9; }
+.contact-social { text-align:left; }
+.contact-page-links a { color:#17252c; }
+[data-lucide],.lucide,.eyedot,.hero-glow,.building-shape,.floating-stat { display:none !important; }
+@media(max-width:768px) {
+ .site-logo {height:39px}
+ .brand-name {font-size:18px}
+ .contact-columns {grid-template-columns:1fr}
+ .landlord-editorial {min-height:180px}
+}
+
+
+/* VarsityStay original palette restoration — append last */
+:root {
+  --vs-dark: #0F172A;
+  --vs-orange: #F97316;
+  --vs-paper: #FFFFFF;
+  --vs-border: #CBD5E1;
+  --vs-text: #0F172A;
+  --vs-muted: #475569;
+  --white: #FFFFFF;
+  --ink: #0F172A;
+  --dark: #0F172A;
+  --orange: #F97316;
+  --muted: #475569;
+  --border: #CBD5E1;
+  --accent: #2563EB;
+}
+body, .site-header, .section.light, .contact-section, .contact-page { background: #FFFFFF !important; color: #0F172A !important; }
+.site-header { border-bottom-color: #CBD5E1 !important; }
+.site-header .brand, .site-header .main-nav a, .site-header .nav-actions button:not(.nav-landlord), .brand-name { color: #0F172A !important; }
+.brand-highlight, .main-nav a.active, .main-nav a:hover, .contact-detail > a { color: #2563EB !important; }
+.hero, .interior-hero, .split-feature, footer, .contact-hero { background: #0F172A !important; color: #FFFFFF !important; }
+.hero-copy h1, .hero-copy > p, .hero-trust span { color: #FFFFFF !important; }
+.hero-copy h1 em, .hero .eyebrow, .contact-hero .contact-eyebrow { color: #FDBA74 !important; }
+.hero-right, .search-panel, .form-card, .contact-form-panel, .modal-panel, .property-card, .uni-card, .ad-card { background: #FFFFFF !important; color: #0F172A !important; border-color: #CBD5E1 !important; }
+.search-card-head { background: #0F172A !important; color: #FFFFFF !important; }
+.search-panel label, .search-panel .budget-top span, .search-panel select, .search-panel input, .search-panel textarea { color: #0F172A !important; }
+.search-panel select, .search-panel input, .search-panel textarea { background: #FFFFFF !important; border-color: #94A3B8 !important; -webkit-text-fill-color: #0F172A; }
+.search-panel select option { background: #FFFFFF !important; color: #0F172A !important; }
+.search-eyebrow, .micro-label, .contact-eyebrow { color: #2563EB !important; }
+.btn.primary, .nav-landlord, .search-btn, .contact-submit { background: #F97316 !important; border-color: #F97316 !important; color: #0F172A !important; }
+.btn.primary:hover, .nav-landlord:hover, .search-btn:hover, .contact-submit:hover { background: #EA580C !important; border-color: #EA580C !important; color: #FFFFFF !important; }
+.account-btn { background: #FFFFFF !important; color: #0F172A !important; border: 1px solid #0F172A !important; }
+.btn.ghost { border-color: #FFFFFF !important; color: #FFFFFF !important; }
+.budget-top strong, .brand-highlight { color: #2563EB !important; }
+input[type=range], input[type=checkbox] { accent-color: #2563EB !important; }
+.section.how, .contact-navigation { background: #F1F5F9 !important; }
+.ads-section { background: #EFF6FF !important; }
+.community-teaser { background: #F8FAFC !important; }
+.pill-check, .contact-social, .contact-page-links a { background: #FFFFFF !important; color: #0F172A !important; border-color: #CBD5E1 !important; }
+footer a, footer .brand { color: #FFFFFF !important; }
+:where(a, button, input, textarea, select):focus-visible { outline: 2px solid #2563EB !important; outline-offset: 3px; }
+/* Maintain the user's flat, square design. */
+*, *::before, *::after { border-radius: 0 !important; box-shadow: none !important; text-shadow: none !important; }
+
 .search-panel{background:rgba(15,23,42,.95);border:1px solid rgba(255,255,255,.1);}
 .filters-row select{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);}
 .budget-block{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15)}
