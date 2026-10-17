@@ -649,3 +649,365 @@ body { background:#fffdf8; color:#17252c; }
  .contact-columns {grid-template-columns:1fr}
  .landlord-editorial {min-height:180px}
 }
+
+/* ==========================================
+   VARSITYSTAY — VISUAL REFINEMENT
+   Securing your Stay. Securing your Success.
+========================================== */
+
+:root {
+  --vs-dark: #17252c;
+  --vs-orange: #c64b20;
+  --vs-paper: #fffdf8;
+  --vs-border: #cbd0cc;
+  --vs-text: #17252c;
+  --vs-muted: #53616a;
+}
+
+/* HEADER */
+
+.site-header {
+  background: var(--vs-paper) !important;
+  border-bottom: 1px solid var(--vs-border);
+}
+
+.nav {
+  max-width: 1320px;
+  min-height: 76px;
+  gap: 24px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.brand-name {
+  color: var(--vs-dark);
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: -0.7px;
+}
+
+.brand-highlight {
+  color: var(--vs-orange);
+}
+
+.site-logo {
+  max-width: 55px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.main-nav {
+  gap: clamp(12px, 1.6vw, 26px);
+}
+
+.main-nav a {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--vs-text) !important;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  color: var(--vs-orange) !important;
+}
+
+.nav-actions {
+  gap: 10px;
+}
+
+/* FIX DARK LOGIN BUTTON */
+
+.account-btn {
+  background: transparent !important;
+  border: 1px solid var(--vs-dark) !important;
+  color: var(--vs-dark) !important;
+  padding: 12px 17px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.account-btn:hover {
+  background: #edf0ed !important;
+}
+
+.nav-landlord {
+  padding: 12px 16px;
+  background: var(--vs-orange) !important;
+  color: #ffffff !important;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* HERO */
+
+.hero {
+  background: var(--vs-dark) !important;
+  padding: 82px 0 72px;
+}
+
+.hero-layout {
+  align-items: center;
+  gap: clamp(36px, 5vw, 80px);
+}
+
+.hero-copy h1 {
+  font-size: clamp(34px, 3.6vw, 54px) !important;
+  font-weight: 600 !important;
+  line-height: 1.2;
+  letter-spacing: -1.5px;
+  max-width: 650px;
+}
+
+.hero-copy h1 em {
+  color: #e8a474 !important;
+  font-style: normal;
+}
+
+.hero-copy > p {
+  max-width: 510px;
+  color: #d5dedf !important;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.hero .eyebrow {
+  color: #e8a474 !important;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+}
+
+.hero-ctas {
+  gap: 14px;
+}
+
+.hero-ctas .btn {
+  min-height: 50px;
+  padding: 13px 22px;
+  font-size: 14px;
+}
+
+.hero-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  color: #d5dedf !important;
+}
+
+.hero-trust span {
+  color: inherit !important;
+  font-size: 12px;
+}
+
+/* SEARCH PANEL */
+
+.hero-right {
+  background: var(--vs-paper) !important;
+  border: 1px solid #c9d0cd;
+  color: var(--vs-text) !important;
+}
+
+.search-card-head {
+  min-height: 48px;
+  padding: 15px 22px;
+  background: var(--vs-dark) !important;
+  color: #ffffff !important;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+}
+
+.search-panel {
+  background: var(--vs-paper) !important;
+  color: var(--vs-text) !important;
+  padding: 28px;
+}
+
+.search-eyebrow {
+  color: #5b6865 !important;
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.search-panel label,
+.search-panel .budget-top span {
+  color: var(--vs-text) !important;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* CRITICAL: FIX INVISIBLE SELECT TEXT */
+
+.search-panel select,
+.search-panel input,
+.search-panel textarea {
+  background: #ffffff !important;
+  color: #17252c !important;
+  border: 1px solid #aab6b0 !important;
+  border-radius: 0 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #17252c;
+}
+
+.search-panel select {
+  min-height: 48px;
+  padding: 11px 12px;
+  font-size: 13px;
+}
+
+.search-panel select option {
+  color: #17252c !important;
+  background: #ffffff !important;
+}
+
+.search-panel input::placeholder {
+  color: #69746f !important;
+  opacity: 1;
+}
+
+.filters-row {
+  gap: 12px;
+}
+
+.budget-block {
+  margin-top: 22px;
+  margin-bottom: 20px;
+}
+
+.budget-top strong {
+  color: var(--vs-orange) !important;
+  font-size: 17px;
+}
+
+#budget {
+  accent-color: var(--vs-orange);
+}
+
+.budget-ends {
+  color: #65716c !important;
+}
+
+.amenity-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill-check {
+  background: #ffffff !important;
+  border: 1px solid var(--vs-border) !important;
+  color: var(--vs-text) !important;
+  padding: 10px 12px;
+  font-size: 12px;
+}
+
+.pill-check input {
+  accent-color: var(--vs-orange);
+}
+
+.search-btn {
+  min-height: 54px;
+  margin-top: 18px;
+  background: var(--vs-orange) !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 700;
+}
+
+/* CONSISTENT FLAT ELEMENTS */
+
+button,
+input,
+select,
+textarea,
+.property-card,
+.form-card,
+.uni-card,
+.ad-card,
+.modal-panel {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--vs-orange);
+  outline-offset: 3px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+  .nav {
+    gap: 14px;
+  }
+
+  .main-nav {
+    gap: 12px;
+  }
+
+  .main-nav a {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding: 55px 0;
+  }
+
+  .hero-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(32px, 6vw, 46px) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 42px 0;
+  }
+
+  .hero-copy h1 {
+    font-size: 32px !important;
+    letter-spacing: -0.7px;
+  }
+
+  .search-panel {
+    padding: 20px;
+  }
+
+  .filters-row {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-ctas .btn {
+    width: 100%;
+  }
+
+  .brand-name {
+    font-size: 19px;
+  }
+}
+
