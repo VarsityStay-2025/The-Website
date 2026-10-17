@@ -9,7 +9,7 @@ const icon=()=>'';
 const cover=(p,i=0)=>p?.images?.[0] ? `<img src="${safe(p.images[0])}" alt="${safe(p.title)}" loading="lazy"/>` : `<div class="graphic-cover graphic-${i%5}"><span>PROPERTY PHOTO NOT AVAILABLE</span></div>`;
 
 const CONTACT = {
-  email: "hello@varsitystay.co.za",
+  email: "hello@varsity-stay.com",
    phone: "+27(79) 503 5111",
   instagram: "https://www.instagram.com/varsity_stay?vrfl=ZnNkbnZtOXR6aGhv&utm_source=qr",
   facebook: "https://www.facebook.com/share/19BF6oCaZr/?mibextid=wwXIfr",
