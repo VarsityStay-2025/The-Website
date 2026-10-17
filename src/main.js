@@ -10,8 +10,9 @@ const cover=(p,i=0)=>p?.images?.[0] ? `<img src="${safe(p.images[0])}" alt="${sa
 
 const CONTACT = {
   email: "hello@varsitystay.co.za",
-  instagram: "",
-  facebook: "",
+   phone: "+27(79) 503 5111",
+  instagram: "https://www.instagram.com/varsity_stay?vrfl=ZnNkbnZtOXR6aGhv&utm_source=qr",
+  facebook: "https://www.facebook.com/share/19BF6oCaZr/?mibextid=wwXIfr",
   tiktok: "https://www.tiktok.com/@varsitystay1?_r=1&_t=ZS-9AdcEgYfLz2",
   whatsapp: "https://whatsapp.com/channel/0029VbB4XuK89inm0VI6fT0C"
 };
@@ -83,35 +84,37 @@ function contact() {
             <div class="contact-detail">
               <h3>Follow VarsityStay</h3>
 
-              <div class="contact-socials">
-                ${socialLinks.map(social => `
-                  ${
-                    /^https?:\/\//i.test(social.url)
-                      ? `
-                        <a
-                          href="${safe(social.url)}"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="contact-social"
-                        >
-                          
+         
+<div class="contact-detail">
+  <h3>Follow VarsityStay</h3>
 
-                          <span>${social.name}</span>
-                        </a>
-                      `
-                      : `
-                        <div class="contact-social disabled">
-                          
-
-                          <span>${social.name}</span>
-                          <small>Coming soon</small>
-                        </div>
-                      `
-                  }
-                `).join("")}
-              </div>
+  <div class="contact-socials">
+    ${socialLinks.map(social => `
+      ${
+        /^https?:\/\//i.test(social.url)
+          ? `
+            <a
+              href="${safe(social.url)}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-social"
+              aria-label="Visit VarsityStay on ${safe(social.name)}"
+            >
+              <span>${safe(social.name)}</span>
+              <span class="social-arrow">↗</span>
+            </a>
+          `
+          : `
+            <div class="contact-social disabled">
+              <span>${safe(social.name)}</span>
+              <small>Link not added</small>
             </div>
-          </div>
+          `
+      }
+    `).join("")}
+  </div>
+</div>
+
 
           <div class="contact-form-panel">
             <p class="contact-eyebrow">
@@ -189,7 +192,7 @@ function contact() {
                 type="submit"
                 class="contact-submit"
               >
-                Open email to send →
+                Open email to send 
               </button>
 
               <p class="contact-form-note">
