@@ -1130,4 +1130,18 @@ textarea:focus-visible {
     font-size: 19px;
   }
 }
+:root {
+  --vs-dark: #000B3D;
+  --dark: #000B3D;
+}
 
+.hero,
+.interior-hero,
+.split-feature,
+footer {
+  background-color: #000B3D !important;
+}
+
+.search-card-head {
+  background-color: #000B3D !important;
+}
