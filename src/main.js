@@ -1,5 +1,6 @@
 import './style.css';
 import { createClient } from '@supabase/supabase-js';
+import { inject } from '@vercel/analytics';
 const url=import.meta.env.VITE_SUPABASE_URL, key=import.meta.env.VITE_SUPABASE_ANON_KEY;
 const configured=!!(url&&key&&!url.includes('YOUR_PROJECT')&&!key.includes('YOUR_'));
 const db=configured?createClient(url,key):null;
@@ -462,6 +463,9 @@ async function initSession() {
   state.profile = data;
 }
 async function fetchPublic(){if(!db)return;const [p,u,a,r]=await Promise.all([db.from('properties').select('*,property_images(url)').eq('status','published').order('created_at',{ascending:false}),db.from('universities').select('*').eq('active',true).order('name'),db.from('advertisements').select('*').eq('status','active').lte('starts_on',new Date().toISOString().slice(0,10)).gte('ends_on',new Date().toISOString().slice(0,10)).order('priority',{ascending:false}),db.from('student_reviews').select('property_name,area,rating,sentiment,body,anonymous').eq('status','published').order('created_at',{ascending:false}).limit(10)]);state.properties=(p.data||[]).map(x=>({...x,images:(x.property_images||[]).map(i=>i.url)}));if(u.error)console.error('VarsityStay university directory:',u.error);state.universities=u.data||[];state.adverts=a.data||[];state.reviews=r.data||[];}
+// Initialize Vercel Analytics
+inject();
+
 (async()=>{await Promise.all([initSession(),fetchPublic()]);state.page=location.hash.slice(1)||'home';if(state.page==='admin'&&state.profile?.role!=='admin')state.page='home';paint()})();
 
 document.addEventListener("submit", function (event) {
