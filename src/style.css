@@ -775,3 +775,23 @@ footer a, footer .brand { color: #FFFFFF !important; }
 .stack-form .university-field select:focus-visible{outline:2px solid #2563eb;outline-offset:2px;border-color:#2563eb}
 .stack-form .university-field select:disabled{background:#f1f5f9;color:#64748b;cursor:not-allowed}
 .stack-form .university-field .university-help{display:block;color:#64748b;font-size:12px;line-height:1.5;font-weight:400}
+
+/* Property photo navigation and admin review */
+.property-gallery{margin:0 0 1.5rem;max-width:100%;}
+.gallery-stage{position:relative;overflow:hidden;background:#e8edf4;min-height:220px;}
+.gallery-main{display:block;width:100%;height:clamp(220px,38vw,410px);object-fit:contain;background:#091b35;}
+.gallery-arrow{position:absolute;top:50%;transform:translateY(-50%);height:44px;width:44px;border:0;background:rgba(8,24,46,.82);color:white;cursor:pointer;font-size:32px;line-height:1;}
+.gallery-arrow:disabled{opacity:.35;cursor:not-allowed;}
+.gallery-arrow.previous{left:8px}.gallery-arrow.next{right:8px}
+.gallery-counter{position:absolute;bottom:10px;right:10px;background:#0b1c33;color:white;padding:5px 10px;font-size:13px;}
+.gallery-thumbs{display:flex;gap:8px;overflow-x:auto;padding:10px 0;}
+.gallery-thumb{border:2px solid transparent;padding:0;flex:0 0 76px;width:76px;height:56px;cursor:pointer;background:#fff;}
+.gallery-thumb.active,.gallery-thumb:focus-visible{border-color:#ed7827;outline:0;}
+.gallery-thumb img{width:100%;height:100%;object-fit:cover;}
+.admin-photo-review{border:1px solid #d8e1ea;padding:14px;margin-bottom:18px;}
+.admin-photo-review h4{margin:0 0 12px;}
+.admin-photo-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;margin-top:12px;}
+.admin-photo-item{display:grid;gap:6px;align-content:start;}
+.admin-photo-item>img{height:90px;width:100%;object-fit:cover;}
+.admin-photo-item button{white-space:normal;min-height:42px;}
+@media(max-width:600px){.gallery-arrow{width:38px;height:38px}.admin-photo-review{padding:8px}}
