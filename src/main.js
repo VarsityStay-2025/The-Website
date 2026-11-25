@@ -412,7 +412,59 @@ document.addEventListener('submit', async e => {
     return;
   }
 
-if(e.target.id==='listing-form'){e.preventDefault();if(!requireAccount('landlord','list accommodation'))return;const f=formObject(e.target);const data={owner_id:state.user.id,title:f.title,description:f.description,city:f.city,suburb:f.suburb,university_id:f.university_id,monthly_rent:Number(f.monthly_rent),walk_minutes:Number(f.walk_minutes),room_type:f.room_type,available_rooms:Number(f.available_rooms),contact_phone:f.contact_phone,address:f.address,nsfas_friendly:!!f.nsfas_friendly,wifi:!!f.wifi,security:!!f.security,parking:!!f.parking,status:'pending'};const {data:listing,error}=await db.from('properties').insert(data).select('id').single();if(error)return notify(error.message,'err');const files=[...($('#listing-images')?.files||[])];for(const file of files.slice(0,15)){if(file.size>5*1024*1024||!['image/jpeg','image/png','image/webp'].includes(file.type)){notify('Skipped invalid or oversized image.','err');continue}const name=`${state.user.id}/${listing.id}/${crypto.randomUUID()}-${file.name.replace(/[^\w.\-]/g,'_')}`;const {error:upError}=await db.storage.from('property-images').upload(name,file,{upsert:false,contentType:file.type});if(upError){notify(upError.message,'err');continue}const {data:pub}=db.storage.from('property-images').getPublicUrl(name);await db.from('property_images').insert({property_id:listing.id,url:pub.publicUrl,path:name})}closeModal();notify('Property submitted for review.');loadDashboardTab('listings')}
+if(e.target.id==='listing-form'){e.preventDefault();if(!requireAccount('landlord','list accommodation'))return;const f=formObject(e.target);const data={owner_id:state.user.id,title:f.title,description:f.description,city:f.city,suburb:f.suburb,university_id:f.university_id,monthly_rent:Number(f.monthly_rent),walk_minutes:Number(f.walk_minutes),room_type:f.room_type,available_rooms:Number(f.available_rooms),contact_phone:f.contact_phone,address:f.address,nsfas_friendly:!!f.nsfas_friendly,wifi:!!f.wifi,security:!!f.security,parking:!!f.parking,status:'pending'};const {data:listing,error}=await db.from('properties').insert(data).select('id').single();if(error)return notify(error.message,'err');const files = [...($('#listing-images')?.files || [])];
+
+if (files.length > 15) {
+  notify('You can upload a maximum of 15 photos.', 'err');
+  return;
+}
+
+for (const [index, file] of files.entries()) {
+  if (
+    file.size > 5 * 1024 * 1024 ||
+    !['image/jpeg', 'image/png', 'image/webp'].includes(file.type)
+  ) {
+    notify(`Photo ${index + 1} is invalid or exceeds 5 MB.`, 'err');
+    continue;
+  }
+
+  const filename = file.name.replace(/[^\w.-]/g, '_');
+
+  const path =
+    `${listing.id}/${state.user.id}/${crypto.randomUUID()}-${filename}`;
+
+  const { error: uploadError } = await db.storage
+    .from('property-photos')
+    .upload(path, file, {
+      upsert: false,
+      contentType: file.type
+    });
+
+  if (uploadError) {
+    console.error(uploadError);
+    notify(`Photo ${index + 1} could not upload.`, 'err');
+    continue;
+  }
+
+  const { data: publicData } = db.storage
+    .from('property-photos')
+    .getPublicUrl(path);
+
+  const { error: imageError } = await db
+    .from('property_images')
+    .insert({
+      property_id: listing.id,
+      url: publicData.publicUrl,
+      path: path,
+      display_order: index + 1,
+      uploaded_by: state.user.id
+    });
+
+  if (imageError) {
+    console.error(imageError);
+    notify(`Photo ${index + 1} uploaded but its record failed.`, 'err');
+  }
+}closeModal();notify('Property submitted for review.');loadDashboardTab('listings')}
 if(e.target.id==='reservation-form'){
  e.preventDefault();if(!requireAccount('student','submit an accommodation application'))return;
  const form=e.target, btn=form.querySelector('button[type="submit"]'),f=formObject(form);
@@ -475,7 +527,7 @@ async function deletePropertyPhoto(button){
   const photoId=button.dataset.deletePhoto,propertyId=button.dataset.propertyId;
   const {data:photo,error:readErr}=await db.from('property_images').select('id,path,property_id').eq('id',photoId).eq('property_id',propertyId).single();
   if(readErr)throw readErr;
-  const {error:storageErr}=await db.storage.from('property-images').remove([photo.path]);
+  const {error:storageErr}=await db.storage.from('property-photos').remove([photo.path]);
   if(storageErr)throw storageErr;
   const {error:rowErr}=await db.from('property_images').delete().eq('id',photo.id);
   if(rowErr)throw new Error('Storage object deleted, but metadata cleanup failed: '+rowErr.message);
